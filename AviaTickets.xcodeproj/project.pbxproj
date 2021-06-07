@@ -20,6 +20,7 @@
 		A1103152266E1C4200241513 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103151266E1C4200241513 /* City.m */; };
 		A1103156266E1C9F00241513 /* Airport.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103155266E1C9F00241513 /* Airport.m */; };
 		A110315A266E1D2600241513 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103159266E1D2600241513 /* DataManager.m */; };
+		A1103160266E208B00241513 /* PlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A110315F266E208B00241513 /* PlaceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		A1103155266E1C9F00241513 /* Airport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Airport.m; sourceTree = "<group>"; };
 		A1103158266E1D2600241513 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		A1103159266E1D2600241513 /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		A110315E266E208B00241513 /* PlaceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceViewController.h; sourceTree = "<group>"; };
+		A110315F266E208B00241513 /* PlaceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,8 @@
 			children = (
 				A110313B266E17B300241513 /* MainViewController.h */,
 				A110313C266E17B300241513 /* MainViewController.m */,
+				A110315E266E208B00241513 /* PlaceViewController.h */,
+				A110315F266E208B00241513 /* PlaceViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1103160266E208B00241513 /* PlaceViewController.m in Sources */,
 				A1103121266E16C400241513 /* AppDelegate.m in Sources */,
 				A1103132266E16C900241513 /* main.m in Sources */,
 				A1103156266E1C9F00241513 /* Airport.m in Sources */,
