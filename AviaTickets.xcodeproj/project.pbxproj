@@ -21,6 +21,7 @@
 		A1103156266E1C9F00241513 /* Airport.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103155266E1C9F00241513 /* Airport.m */; };
 		A110315A266E1D2600241513 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103159266E1D2600241513 /* DataManager.m */; };
 		A1103160266E208B00241513 /* PlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A110315F266E208B00241513 /* PlaceViewController.m */; };
+		A1103171266E28B700241513 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103170266E28B700241513 /* APIManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		A1103159266E1D2600241513 /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		A110315E266E208B00241513 /* PlaceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceViewController.h; sourceTree = "<group>"; };
 		A110315F266E208B00241513 /* PlaceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceViewController.m; sourceTree = "<group>"; };
+		A110316F266E28B700241513 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		A1103170266E28B700241513 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,7 @@
 		A110311E266E16C400241513 /* AviaTickets */ = {
 			isa = PBXGroup;
 			children = (
+				A110316E266E289C00241513 /* Service */,
 				A110314A266E1B4200241513 /* Models */,
 				A1103142266E1AAD00241513 /* JSON */,
 				A1103141266E1A2B00241513 /* Controllers */,
@@ -129,6 +133,15 @@
 				A1103155266E1C9F00241513 /* Airport.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A110316E266E289C00241513 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A110316F266E28B700241513 /* APIManager.h */,
+				A1103170266E28B700241513 /* APIManager.m */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +219,7 @@
 				A1103121266E16C400241513 /* AppDelegate.m in Sources */,
 				A1103132266E16C900241513 /* main.m in Sources */,
 				A1103156266E1C9F00241513 /* Airport.m in Sources */,
+				A1103171266E28B700241513 /* APIManager.m in Sources */,
 				A1103152266E1C4200241513 /* City.m in Sources */,
 				A110313D266E17B300241513 /* MainViewController.m in Sources */,
 				A110315A266E1D2600241513 /* DataManager.m in Sources */,
