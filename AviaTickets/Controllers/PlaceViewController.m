@@ -9,12 +9,14 @@
 
 #define ReuseIdentifier @"CellIdentifier"
 
-@interface PlaceViewController ()
+@interface PlaceViewController () <UISearchResultsUpdating>
 
 @property (nonatomic) PlaceType placeType;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) NSArray *currentArray;
+@property (nonatomic, strong) NSArray *searchArray;
+@property (nonatomic, strong) UISearchController *searchController;
 
 @end
 
@@ -34,10 +36,17 @@
     
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.obscuresBackgroundDuringPresentation = NO;
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.navigationItem.hidesSearchBarWhenScrolling = NO;
+    self.searchArray = [NSArray new];
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.view addSubview:_tableView];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    [self.view addSubview:self.tableView];
     
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Города", @"Аэропорты"]];
     [self.segmentedControl addTarget:self action:@selector(changeSource) forControlEvents:UIControlEventValueChanged];
@@ -67,10 +76,23 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - UISearchResultsUpdating
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    if (searchController.searchBar.text) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name CONTAINS[cd] %@", searchController.searchBar.text];
+        self.searchArray = [self.currentArray filteredArrayUsingPredicate: predicate];
+        [self.tableView reloadData];
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.searchController.isActive && [_searchArray count] > 0) {
+        return [self.searchArray count];
+    }
     return [self.currentArray count];
 }
 
@@ -82,12 +104,12 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     if (self.segmentedControl.selectedSegmentIndex == 0) {
-        City *city = [_currentArray objectAtIndex:indexPath.row];
+        City *city = (self.searchController.isActive && [_searchArray count] > 0) ? [self.searchArray objectAtIndex:indexPath.row] : [self.currentArray objectAtIndex:indexPath.row];
         cell.textLabel.text = city.name;
         cell.detailTextLabel.text = city.code;
     }
     else if (self.segmentedControl.selectedSegmentIndex == 1) {
-        Airport *airport = [_currentArray objectAtIndex:indexPath.row];
+        Airport *airport = (self.searchController.isActive && [_searchArray count] > 0) ? [self.searchArray objectAtIndex:indexPath.row] : [self.currentArray objectAtIndex:indexPath.row];
         cell.textLabel.text = airport.name;
         cell.detailTextLabel.text = airport.code;
     }
@@ -98,19 +120,14 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DataSourceType dataType = ((int)self.segmentedControl.selectedSegmentIndex) + 1;
-    [self.delegate selectPlace:[_currentArray objectAtIndex:indexPath.row] withType:_placeType andDataType:dataType];
+    DataSourceType dataType = ((int)_segmentedControl.selectedSegmentIndex) + 1;
+    if (self.searchController.isActive && [self.searchArray count] > 0) {
+        [self.delegate selectPlace:[self.searchArray objectAtIndex:indexPath.row] withType:self.placeType andDataType:dataType];
+        self.searchController.active = NO;
+    } else {
+        [self.delegate selectPlace:[self.currentArray objectAtIndex:indexPath.row] withType:self.placeType andDataType:dataType];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
