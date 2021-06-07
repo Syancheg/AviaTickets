@@ -22,6 +22,9 @@
 		A110315A266E1D2600241513 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103159266E1D2600241513 /* DataManager.m */; };
 		A1103160266E208B00241513 /* PlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A110315F266E208B00241513 /* PlaceViewController.m */; };
 		A1103171266E28B700241513 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103170266E28B700241513 /* APIManager.m */; };
+		A1103175266E3EB500241513 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103174266E3EB500241513 /* LocationService.m */; };
+		A110317A266E40D200241513 /* MapPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103179266E40D200241513 /* MapPrice.m */; };
+		A1103184266E41EA00241513 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103183266E41EA00241513 /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,12 @@
 		A110315F266E208B00241513 /* PlaceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceViewController.m; sourceTree = "<group>"; };
 		A110316F266E28B700241513 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		A1103170266E28B700241513 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		A1103173266E3EB500241513 /* LocationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
+		A1103174266E3EB500241513 /* LocationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
+		A1103178266E40D200241513 /* MapPrice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapPrice.h; sourceTree = "<group>"; };
+		A1103179266E40D200241513 /* MapPrice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapPrice.m; sourceTree = "<group>"; };
+		A1103182266E41EA00241513 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		A1103183266E41EA00241513 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +117,8 @@
 				A110313C266E17B300241513 /* MainViewController.m */,
 				A110315E266E208B00241513 /* PlaceViewController.h */,
 				A110315F266E208B00241513 /* PlaceViewController.m */,
+				A1103182266E41EA00241513 /* MapViewController.h */,
+				A1103183266E41EA00241513 /* MapViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -131,6 +142,8 @@
 				A1103151266E1C4200241513 /* City.m */,
 				A1103154266E1C9F00241513 /* Airport.h */,
 				A1103155266E1C9F00241513 /* Airport.m */,
+				A1103178266E40D200241513 /* MapPrice.h */,
+				A1103179266E40D200241513 /* MapPrice.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -140,6 +153,8 @@
 			children = (
 				A110316F266E28B700241513 /* APIManager.h */,
 				A1103170266E28B700241513 /* APIManager.m */,
+				A1103173266E3EB500241513 /* LocationService.h */,
+				A1103174266E3EB500241513 /* LocationService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -215,11 +230,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1103175266E3EB500241513 /* LocationService.m in Sources */,
 				A1103160266E208B00241513 /* PlaceViewController.m in Sources */,
 				A1103121266E16C400241513 /* AppDelegate.m in Sources */,
 				A1103132266E16C900241513 /* main.m in Sources */,
 				A1103156266E1C9F00241513 /* Airport.m in Sources */,
 				A1103171266E28B700241513 /* APIManager.m in Sources */,
+				A110317A266E40D200241513 /* MapPrice.m in Sources */,
+				A1103184266E41EA00241513 /* MapViewController.m in Sources */,
 				A1103152266E1C4200241513 /* City.m in Sources */,
 				A110313D266E17B300241513 /* MainViewController.m in Sources */,
 				A110315A266E1D2600241513 /* DataManager.m in Sources */,
