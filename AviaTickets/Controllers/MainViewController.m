@@ -7,12 +7,15 @@
 
 #import "MainViewController.h"
 #import "DataManager.h"
+#import "APIManager.h"
 
 @interface MainViewController () <PlaceViewControllerDelegate>
 
+@property (nonatomic, strong) UIView *placeContainerView;
 @property (nonatomic, strong) UIButton *departureButton;
 @property (nonatomic, strong) UIButton *arrivalButton;
 @property (nonatomic) SearchRequest searchRequest;
+@property (nonatomic, strong) UIButton *searchButton;
 
 @end
 
@@ -27,21 +30,54 @@
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.title = @"Поиск";
     
+    self.placeContainerView = [[UIView alloc] initWithFrame:CGRectMake(20.0, 140.0, [UIScreen mainScreen].bounds.size.width - 40.0, 170.0)];
+    self.placeContainerView.backgroundColor = [UIColor whiteColor];
+    self.placeContainerView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:0.1] CGColor];
+    self.placeContainerView.layer.shadowOffset = CGSizeZero;
+    self.placeContainerView.layer.shadowRadius = 20.0;
+    self.placeContainerView.layer.shadowOpacity = 1.0;
+    self.placeContainerView.layer.cornerRadius = 6.0;
+    
     self.departureButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.departureButton setTitle:@"Откуда" forState: UIControlStateNormal];
     self.departureButton.tintColor = [UIColor blackColor];
-    self.departureButton.frame = CGRectMake(30.0, 140.0, [UIScreen mainScreen].bounds.size.width - 60.0, 60.0);
-    self.departureButton.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3];
+    self.departureButton.frame = CGRectMake(10.0, 20.0, _placeContainerView.frame.size.width - 20.0, 60.0);
+    self.departureButton.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.1];
+    self.departureButton.layer.cornerRadius = 4.0;
     [self.departureButton addTarget:self action:@selector(placeButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.departureButton];
+    [self.placeContainerView addSubview:_departureButton];
     
     self.arrivalButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.arrivalButton setTitle:@"Куда" forState: UIControlStateNormal];
     self.arrivalButton.tintColor = [UIColor blackColor];
-    self.arrivalButton.frame = CGRectMake(30.0, CGRectGetMaxY(self.departureButton.frame) + 20.0, [UIScreen mainScreen].bounds.size.width - 60.0, 60.0);
-    self.arrivalButton.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3];
+    self.arrivalButton.frame = CGRectMake(10.0, CGRectGetMaxY(_departureButton.frame) + 10.0, self.placeContainerView.frame.size.width - 20.0, 60.0);
+    self.arrivalButton.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.1];
+    self.arrivalButton.layer.cornerRadius = 4.0;
     [self.arrivalButton addTarget:self action:@selector(placeButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.arrivalButton];
+    [self.placeContainerView addSubview:_arrivalButton];
+    
+    [self.view addSubview:_placeContainerView];
+    
+    self.searchButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.searchButton setTitle:@"Найти" forState:UIControlStateNormal];
+    self.searchButton.tintColor = [UIColor whiteColor];
+    self.searchButton.frame = CGRectMake(30.0, CGRectGetMaxY(_placeContainerView.frame) + 30, [UIScreen mainScreen].bounds.size.width - 60.0, 60.0);
+    self.searchButton.backgroundColor = [UIColor blackColor];
+    self.searchButton.layer.cornerRadius = 8.0;
+    self.searchButton.titleLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightBold];
+    [self.view addSubview:_searchButton];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataLoadedSuccessfully) name:kDataManagerLoadDataDidComplete object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDataManagerLoadDataDidComplete object:nil];
+}
+
+- (void)dataLoadedSuccessfully {
+    [[APIManager sharedInstance] cityForCurrentIP:^(City *city) {
+        [self setPlace:city withDataType:DataSourceTypeCity andPlaceType:PlaceTypeDeparture forButton:self.departureButton];
+    }];
 }
 
 - (void)placeButtonDidTap:(UIButton *)sender {
