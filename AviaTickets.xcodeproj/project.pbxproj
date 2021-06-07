@@ -25,6 +25,7 @@
 		A1103175266E3EB500241513 /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103174266E3EB500241513 /* LocationService.m */; };
 		A110317A266E40D200241513 /* MapPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103179266E40D200241513 /* MapPrice.m */; };
 		A1103184266E41EA00241513 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103183266E41EA00241513 /* MapViewController.m */; };
+		A1103189266E44F300241513 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103188266E44F300241513 /* TabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,8 @@
 		A1103179266E40D200241513 /* MapPrice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapPrice.m; sourceTree = "<group>"; };
 		A1103182266E41EA00241513 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		A1103183266E41EA00241513 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		A1103187266E44F300241513 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		A1103188266E44F300241513 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				A110315F266E208B00241513 /* PlaceViewController.m */,
 				A1103182266E41EA00241513 /* MapViewController.h */,
 				A1103183266E41EA00241513 /* MapViewController.m */,
+				A1103187266E44F300241513 /* TabBarController.h */,
+				A1103188266E44F300241513 /* TabBarController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				A1103156266E1C9F00241513 /* Airport.m in Sources */,
 				A1103171266E28B700241513 /* APIManager.m in Sources */,
 				A110317A266E40D200241513 /* MapPrice.m in Sources */,
+				A1103189266E44F300241513 /* TabBarController.m in Sources */,
 				A1103184266E41EA00241513 /* MapViewController.m in Sources */,
 				A1103152266E1C4200241513 /* City.m in Sources */,
 				A110313D266E17B300241513 /* MainViewController.m in Sources */,
