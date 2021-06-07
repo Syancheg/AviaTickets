@@ -6,6 +6,7 @@
 //
 
 #import "APIManager.h"
+#import "MapPrice.h"
 
 @implementation APIManager
 
@@ -43,15 +44,36 @@
 }
 
 - (void)load:(NSString *)urlString withCompletion:(void (^)(id _Nullable result))completion {
-    dispatch_async(dispatch_get_main_queue(), ^{
-       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//    });
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        });
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//        });
         completion([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]);
     }] resume] ;
+}
+
+- (void)mapPricesFor:(City *)origin withCompletion:(void (^)(NSArray *prices))completion
+{
+    static BOOL isLoading;
+    if (isLoading) { return; }
+    isLoading = YES;
+    [self load:[NSString stringWithFormat:@"%@%@", API_URL_MAP_PRICE, origin.code] withCompletion:^(id  _Nullable result) {
+        NSArray *array = result;
+        NSMutableArray *prices = [NSMutableArray new];
+        if (array) {
+            for (NSDictionary *mapPriceDictionary in array) {
+                MapPrice *mapPrice = [[MapPrice alloc] initWithDictionary:mapPriceDictionary withOrigin:origin];
+                [prices addObject:mapPrice];
+            }
+            isLoading = NO;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(prices);
+            });
+        }
+    }];
 }
 
 
