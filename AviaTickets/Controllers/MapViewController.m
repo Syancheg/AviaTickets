@@ -12,6 +12,8 @@
 #import "DataManager.h"
 #import "MapPrice.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Ticket.h"
+#import "CoreDataHelper.h"
 
 @interface MapViewController ()
 
@@ -30,6 +32,7 @@
     self.title = @"Карта цен";
     
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+    [self.mapView setDelegate:self];
     self.mapView.showsUserLocation = YES;
     [self.view addSubview:self.mapView];
     
@@ -78,5 +81,63 @@
         });
     }
 }
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    static NSString *identifier = @"MarkerIdentifier";
+    MKMarkerAnnotationView *annotationView = (MKMarkerAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    if (!annotationView) {
+        annotationView = [[MKMarkerAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        
+        annotationView.canShowCallout = YES;
+        annotationView.calloutOffset = CGPointMake(-5.0, 5.0);
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        button.accessibilityValue = annotationView.annotation.title;
+        [button addTarget:self action:@selector(addFavorites:) forControlEvents:UIControlEventTouchUpInside];
+        annotationView.rightCalloutAccessoryView = button;
+    }
+    annotationView.annotation = annotation;
+    return annotationView;
+}
+
+- (void) addFavorites: (UIButton *)sender {
+    
+    for (MapPrice *price in self.prices) {
+        NSString *str = [NSString stringWithFormat:@"%@ (%@)", price.destination.name, price.destination.code];
+        if([sender.accessibilityValue isEqual:str]){
+            Ticket *ticket = [[Ticket alloc] init];
+            ticket.departure = price.departure;
+            ticket.airline = price.airline;
+            ticket.from = self.origin.code;
+            ticket.to = price.destination.code;
+            ticket.price = [NSNumber numberWithLong:price.value];
+            ticket.type = [NSNumber numberWithInt:1];
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Действия с билетом" message:@"Что необходимо сделать с выбранным билетом?" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *favoriteAction;
+            
+            if ([[CoreDataHelper sharedInstance] isFavorite: ticket]) {
+                favoriteAction = [UIAlertAction actionWithTitle:@"Удалить из избранного" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                    [[CoreDataHelper sharedInstance] removeFromFavorite:ticket];
+                }];
+            } else {
+                favoriteAction = [UIAlertAction actionWithTitle:@"Добавить в избранное" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [[CoreDataHelper sharedInstance] addToFavorite:ticket];
+                }];
+            }
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Закрыть" style:UIAlertActionStyleCancel handler:nil];
+            [alertController addAction:favoriteAction];
+            [alertController addAction:cancelAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        }
+    }
+    
+    
+//    NSLog(@"%@", sender.accessibilityValue);
+//    NSLog(@"%@", self.origin.name);
+//    NSLog(@"%@", self.origin.code);
+}
+
 
 @end

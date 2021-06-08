@@ -8,6 +8,7 @@
 #import "MainViewController.h"
 #import "DataManager.h"
 #import "APIManager.h"
+#import "TicketsViewController.h"
 
 @interface MainViewController () <PlaceViewControllerDelegate>
 
@@ -61,11 +62,12 @@
     self.searchButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.searchButton setTitle:@"Найти" forState:UIControlStateNormal];
     self.searchButton.tintColor = [UIColor whiteColor];
-    self.searchButton.frame = CGRectMake(30.0, CGRectGetMaxY(_placeContainerView.frame) + 30, [UIScreen mainScreen].bounds.size.width - 60.0, 60.0);
+    self.searchButton.frame = CGRectMake(30.0, CGRectGetMaxY(self.placeContainerView.frame) + 30, [UIScreen mainScreen].bounds.size.width - 60.0, 60.0);
     self.searchButton.backgroundColor = [UIColor blackColor];
     self.searchButton.layer.cornerRadius = 8.0;
     self.searchButton.titleLabel.font = [UIFont systemFontOfSize:20.0 weight:UIFontWeightBold];
-    [self.view addSubview:_searchButton];
+    [self.searchButton addTarget:self action:@selector(searchButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.searchButton];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataLoadedSuccessfully) name:kDataManagerLoadDataDidComplete object:nil];
 }
@@ -77,6 +79,19 @@
 - (void)dataLoadedSuccessfully {
     [[APIManager sharedInstance] cityForCurrentIP:^(City *city) {
         [self setPlace:city withDataType:DataSourceTypeCity andPlaceType:PlaceTypeDeparture forButton:self.departureButton];
+    }];
+}
+
+- (void)searchButtonDidTap:(UIButton *)sender {
+    [[APIManager sharedInstance] ticketsWithRequest:_searchRequest withCompletion:^(NSArray *tickets) {
+        if (tickets.count > 0) {
+            TicketsViewController *ticketsViewController = [[TicketsViewController alloc] initWithTickets:tickets];
+            [self.navigationController showViewController:ticketsViewController sender:self];
+        } else {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Увы!" message:@"По данному направлению билетов не найдено" preferredStyle: UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Закрыть" style:(UIAlertActionStyleDefault) handler:nil]];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
     }];
 }
 
