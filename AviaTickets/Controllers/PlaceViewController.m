@@ -39,7 +39,6 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.obscuresBackgroundDuringPresentation = NO;
     self.searchController.searchResultsUpdater = self;
-    self.searchController.navigationItem.hidesSearchBarWhenScrolling = NO;
     self.searchArray = [NSArray new];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -90,7 +89,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.searchController.isActive && [_searchArray count] > 0) {
+    if (self.searchController.isActive && [self.searchArray count] > 0) {
         return [self.searchArray count];
     }
     return [self.currentArray count];
@@ -104,12 +103,12 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     if (self.segmentedControl.selectedSegmentIndex == 0) {
-        City *city = (self.searchController.isActive && [_searchArray count] > 0) ? [self.searchArray objectAtIndex:indexPath.row] : [self.currentArray objectAtIndex:indexPath.row];
+        City *city = (self.searchController.isActive && [self.searchArray count] > 0) ? [self.searchArray objectAtIndex:indexPath.row] : [self.currentArray objectAtIndex:indexPath.row];
         cell.textLabel.text = city.name;
         cell.detailTextLabel.text = city.code;
     }
     else if (self.segmentedControl.selectedSegmentIndex == 1) {
-        Airport *airport = (self.searchController.isActive && [_searchArray count] > 0) ? [self.searchArray objectAtIndex:indexPath.row] : [self.currentArray objectAtIndex:indexPath.row];
+        Airport *airport = (self.searchController.isActive && [self.searchArray count] > 0) ? [self.searchArray objectAtIndex:indexPath.row] : [self.currentArray objectAtIndex:indexPath.row];
         cell.textLabel.text = airport.name;
         cell.detailTextLabel.text = airport.code;
     }

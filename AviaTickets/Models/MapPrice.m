@@ -23,6 +23,7 @@
         self.value = [[dictionary valueForKey:@"value"] integerValue];
         self.distance = [[dictionary valueForKey:@"distance"] integerValue];
         self.actual = [[dictionary valueForKey:@"actual"] boolValue];
+        self.airline = [dictionary valueForKey:@"airline"];
     }
     return self;
 }
