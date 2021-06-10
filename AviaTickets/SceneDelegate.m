@@ -9,13 +9,13 @@
 #import "MainViewController.h"
 #import "MapViewController.h"
 #import "TabBarController.h"
+#import "NotificationCenter.h"
 
 @interface SceneDelegate ()
 
 @end
 
 @implementation SceneDelegate
-
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
     CGRect windowFrame = [[UIScreen mainScreen] bounds];
@@ -27,6 +27,7 @@
     self.window.rootViewController = tabBarController;
     UIWindowScene *windowScane = (UIWindowScene *) scene;
     [self.window setWindowScene: windowScane];
+    [[NotificationCenter sharedInstance] registerService];
 }
 
 

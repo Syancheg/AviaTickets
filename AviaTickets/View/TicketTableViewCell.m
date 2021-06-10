@@ -27,6 +27,7 @@
         self.contentView.layer.cornerRadius = 6.0;
         self.contentView.backgroundColor = [UIColor whiteColor];
         
+        
         self.priceLabel = [[UILabel alloc] initWithFrame:self.bounds];
         self.priceLabel.font = [UIFont systemFontOfSize:24.0 weight:UIFontWeightBold];
         [self.contentView addSubview:self.priceLabel];
@@ -51,12 +52,21 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.contentView.frame = CGRectMake(10.0, 10.0, [UIScreen mainScreen].bounds.size.width - 20.0, self.frame.size.height - 20.0);
+    self.contentView.frame = CGRectMake(-[UIScreen mainScreen].bounds.size.width, 10.0, [UIScreen mainScreen].bounds.size.width - 20.0, self.frame.size.height - 20.0);
+    
     self.priceLabel.frame = CGRectMake(10.0, 10.0, self.contentView.frame.size.width - 110.0, 40.0);
     self.airlineLogoView.frame = CGRectMake(CGRectGetMaxX(self.priceLabel.frame) + 10.0, 10.0, 80.0, 80.0);
     self.placesLabel.frame = CGRectMake(10.0, CGRectGetMaxY(self.priceLabel.frame) + 16.0, 100.0, 20.0);
     self.dateLabel.frame = CGRectMake(10.0, CGRectGetMaxY(self.placesLabel.frame) + 8.0, self.contentView.frame.size.width - 20.0, 20.0);
+    
+    self.priceLabel.layer.opacity = 0;
+    self.airlineLogoView.layer.opacity = 0;
+    self.placesLabel.layer.opacity = 0;
+    self.dateLabel.layer.opacity = 0;
+    [self startAnimating];
 }
+
+
 
 - (void)setTicket:(Ticket *)ticket {
     _ticket = ticket;
@@ -67,9 +77,8 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"dd MMMM yyyy hh:mm";
     _dateLabel.text = [dateFormatter stringFromDate:ticket.departure];
-    NSString *url = [NSString stringWithFormat:@"http://ios.aviasales.ru/logos/xxhdpi/%@.png", ticket.airline];
-    NSData *data=[NSData dataWithContentsOfURL:[NSURL  URLWithString:url]];
-    self.airlineLogoView.image = [UIImage imageWithData:data];
+    [self loadImage:self.ticket.airline];
+    
 }
 
 - (void)setFavoriteTicket:(FavoriteTicket *)favoriteTicket {
@@ -81,9 +90,54 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"dd MMMM yyyy hh:mm";
     _dateLabel.text = [dateFormatter stringFromDate:favoriteTicket.departure];
-    NSString *url = [NSString stringWithFormat:@"http://ios.aviasales.ru/logos/xxhdpi/%@.png", favoriteTicket.airline];
-    NSData *data=[NSData dataWithContentsOfURL:[NSURL  URLWithString:url]];
-    self.airlineLogoView.image = [UIImage imageWithData:data];
+    [self loadImage:self.favoriteTicket.airline];
+}
+
+- (void)loadImage: (NSString *)airline {
+    NSString *url = [NSString stringWithFormat:@"http://ios.aviasales.ru/logos/xxhdpi/%@.png", airline];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_async(group, queue, ^{
+        NSData *data=[NSData dataWithContentsOfURL:[NSURL  URLWithString:url]];
+        UIImage *image = [UIImage imageWithData:data];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.airlineLogoView.image = image;
+            [UIView animateWithDuration:0.5 animations:^{
+                self.airlineLogoView.layer.opacity = 1;
+            }];
+        });
+    });
+}
+
+-(void)startAnimating {
+    [UIView animateWithDuration:2 animations:^{
+        
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.05 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            if(finished){
+                self.contentView.frame = CGRectMake(10.0, 10.0, [UIScreen mainScreen].bounds.size.width - 20.0, self.frame.size.height - 20.0);
+            }
+        } completion:^(BOOL finished) {
+            if (finished){
+                [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                    self.priceLabel.layer.opacity = 1;
+                } completion:^(BOOL finished) {
+                    if (finished){
+                        [UIView animateWithDuration:0.3 animations:^{
+                            self.placesLabel.layer.opacity = 1;
+                            self.airlineLogoView.layer.opacity = 1;
+                        } completion:^(BOOL finished) {
+                            if(finished){
+                                [UIView animateWithDuration:0.3 animations:^{
+                                    self.dateLabel.layer.opacity = 1;
+                                }];
+                            }
+                        }];
+                    }
+                }];
+            }
+        }];
+    }];
 }
 
 @end

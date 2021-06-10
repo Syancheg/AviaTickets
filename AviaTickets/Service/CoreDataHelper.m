@@ -72,7 +72,7 @@
     favorite.from = ticket.from;
     favorite.to = ticket.to;
     favorite.created = [NSDate date];
-    favorite.type = ticket.type.integerValue;
+    favorite.type = ticket.type.intValue;
     [self save];
 }
 
@@ -90,6 +90,37 @@
     request.predicate = [NSPredicate predicateWithFormat: format];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"created" ascending:NO]];
     return [_managedObjectContext executeFetchRequest:request error:nil];
+}
+
+- (void)addNotificationTicket:(Ticket *)ticket forDate:(NSDate *)date {
+    NotificationTicket *notificationTicket = [NSEntityDescription insertNewObjectForEntityForName:@"NotificationTicket" inManagedObjectContext:_managedObjectContext];
+    notificationTicket.created = date;
+    notificationTicket.departure = ticket.departure;
+    notificationTicket.expires = ticket.expires;
+    notificationTicket.airline = ticket.airline;
+    notificationTicket.from = ticket.from;
+    notificationTicket.to  = ticket.to;
+    notificationTicket.price = ticket.price.intValue;
+    notificationTicket.flightNumber = ticket.flightNumber.intValue;
+    [self save];
+}
+- (void)removeNotificationTicket: (Ticket *)ticket {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"NotificationTicket"];
+    request.predicate = [NSPredicate predicateWithFormat:@"price == %ld AND airline == %@ AND from == %@ AND to == %@ AND departure == %@ AND expires == %@ AND flightNumber == %ld", (long)ticket.price.integerValue, ticket.airline, ticket.from, ticket.to, ticket.departure, ticket.expires, (long)ticket.flightNumber.integerValue];
+    NotificationTicket *notificationTicket = [[self.managedObjectContext executeFetchRequest:request error:nil] firstObject];
+    if (notificationTicket) {
+        [_managedObjectContext deleteObject:notificationTicket];
+        [self save];
+    }
+}
+- (Ticket *)getNotificationTicket: (NSDate *)date {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"NotificationTicket"];
+    request.predicate = [NSPredicate predicateWithFormat: @"created = %@", date];
+    Ticket *ticket = [_managedObjectContext executeFetchRequest:request error:nil].firstObject;
+    if(ticket){
+        return ticket;
+    }
+    return [Ticket new];;
 }
 
 
