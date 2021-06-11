@@ -30,6 +30,13 @@
 		A1103192266E4DD800241513 /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103191266E4DD800241513 /* Ticket.m */; };
 		A1103196266E4EAA00241513 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1103195266E4EAA00241513 /* TicketsViewController.m */; };
 		A11031A4266E632F00241513 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A11031A3266E632F00241513 /* CoreDataHelper.m */; };
+		A11664512670AF96006B71C1 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A11664502670AF96006B71C1 /* ProgressView.m */; };
+		A116645B2670B8C2006B71C1 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A116645A2670B8C2006B71C1 /* ContentViewController.m */; };
+		A116645F2670B9F7006B71C1 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A116645E2670B9F7006B71C1 /* FirstViewController.m */; };
+		A11664632670C08A006B71C1 /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A11664622670C08A006B71C1 /* NotificationCenter.m */; };
+		A11664692670E1DA006B71C1 /* NotificationTicket+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = A11664672670E1DA006B71C1 /* NotificationTicket+CoreDataClass.m */; };
+		A116646A2670E1DA006B71C1 /* NotificationTicket+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A11664682670E1DA006B71C1 /* NotificationTicket+CoreDataProperties.m */; };
+		A116647326710114006B71C1 /* NotificationTicketView.m in Sources */ = {isa = PBXBuildFile; fileRef = A116647226710114006B71C1 /* NotificationTicketView.m */; };
 		A1E5A20F266FD35A00FDC9C2 /* FavoriteTicket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1E5A20D266FD35A00FDC9C2 /* FavoriteTicket.xcdatamodeld */; };
 		A1E5A215266FD41400FDC9C2 /* FavoriteTicket+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E5A213266FD41400FDC9C2 /* FavoriteTicket+CoreDataClass.m */; };
 		A1E5A216266FD41400FDC9C2 /* FavoriteTicket+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E5A214266FD41400FDC9C2 /* FavoriteTicket+CoreDataProperties.m */; };
@@ -78,6 +85,20 @@
 		A1103195266E4EAA00241513 /* TicketsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
 		A11031A2266E632F00241513 /* CoreDataHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		A11031A3266E632F00241513 /* CoreDataHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		A116644F2670AF96006B71C1 /* ProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
+		A11664502670AF96006B71C1 /* ProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
+		A11664592670B8C2006B71C1 /* ContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		A116645A2670B8C2006B71C1 /* ContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		A116645D2670B9F7006B71C1 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		A116645E2670B9F7006B71C1 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		A11664612670C089006B71C1 /* NotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationCenter.h; sourceTree = "<group>"; };
+		A11664622670C08A006B71C1 /* NotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationCenter.m; sourceTree = "<group>"; };
+		A11664652670E1DA006B71C1 /* NotificationTicket+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NotificationTicket+CoreDataProperties.h"; sourceTree = "<group>"; };
+		A11664662670E1DA006B71C1 /* NotificationTicket+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NotificationTicket+CoreDataClass.h"; sourceTree = "<group>"; };
+		A11664672670E1DA006B71C1 /* NotificationTicket+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NotificationTicket+CoreDataClass.m"; sourceTree = "<group>"; };
+		A11664682670E1DA006B71C1 /* NotificationTicket+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NotificationTicket+CoreDataProperties.m"; sourceTree = "<group>"; };
+		A116647126710114006B71C1 /* NotificationTicketView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationTicketView.h; sourceTree = "<group>"; };
+		A116647226710114006B71C1 /* NotificationTicketView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationTicketView.m; sourceTree = "<group>"; };
 		A1E5A20E266FD35A00FDC9C2 /* FavoriteTicket.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteTicket.xcdatamodel; sourceTree = "<group>"; };
 		A1E5A211266FD41400FDC9C2 /* FavoriteTicket+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FavoriteTicket+CoreDataProperties.h"; sourceTree = "<group>"; };
 		A1E5A212266FD41400FDC9C2 /* FavoriteTicket+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FavoriteTicket+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -99,6 +120,10 @@
 		A1103113266E16C400241513 = {
 			isa = PBXGroup;
 			children = (
+				A11664652670E1DA006B71C1 /* NotificationTicket+CoreDataProperties.h */,
+				A11664662670E1DA006B71C1 /* NotificationTicket+CoreDataClass.h */,
+				A11664672670E1DA006B71C1 /* NotificationTicket+CoreDataClass.m */,
+				A11664682670E1DA006B71C1 /* NotificationTicket+CoreDataProperties.m */,
 				A1E5A211266FD41400FDC9C2 /* FavoriteTicket+CoreDataProperties.h */,
 				A1E5A212266FD41400FDC9C2 /* FavoriteTicket+CoreDataClass.h */,
 				A1E5A213266FD41400FDC9C2 /* FavoriteTicket+CoreDataClass.m */,
@@ -120,14 +145,11 @@
 		A110311E266E16C400241513 /* AviaTickets */ = {
 			isa = PBXGroup;
 			children = (
+				A116644E2670AF7C006B71C1 /* View */,
 				A110316E266E289C00241513 /* Service */,
 				A110314A266E1B4200241513 /* Models */,
 				A1103142266E1AAD00241513 /* JSON */,
 				A1103141266E1A2B00241513 /* Controllers */,
-				A110318B266E4D8300241513 /* TicketTableViewCell.h */,
-				A110318C266E4D8300241513 /* TicketTableViewCell.m */,
-				A1103158266E1D2600241513 /* DataManager.h */,
-				A1103159266E1D2600241513 /* DataManager.m */,
 				A110311F266E16C400241513 /* AppDelegate.h */,
 				A1103120266E16C400241513 /* AppDelegate.m */,
 				A1103122266E16C400241513 /* SceneDelegate.h */,
@@ -153,6 +175,10 @@
 				A1103188266E44F300241513 /* TabBarController.m */,
 				A1103194266E4EAA00241513 /* TicketsViewController.h */,
 				A1103195266E4EAA00241513 /* TicketsViewController.m */,
+				A11664592670B8C2006B71C1 /* ContentViewController.h */,
+				A116645A2670B8C2006B71C1 /* ContentViewController.m */,
+				A116645D2670B9F7006B71C1 /* FirstViewController.h */,
+				A116645E2670B9F7006B71C1 /* FirstViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -193,8 +219,25 @@
 				A1103174266E3EB500241513 /* LocationService.m */,
 				A11031A2266E632F00241513 /* CoreDataHelper.h */,
 				A11031A3266E632F00241513 /* CoreDataHelper.m */,
+				A1103158266E1D2600241513 /* DataManager.h */,
+				A1103159266E1D2600241513 /* DataManager.m */,
+				A11664612670C089006B71C1 /* NotificationCenter.h */,
+				A11664622670C08A006B71C1 /* NotificationCenter.m */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		A116644E2670AF7C006B71C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A110318B266E4D8300241513 /* TicketTableViewCell.h */,
+				A110318C266E4D8300241513 /* TicketTableViewCell.m */,
+				A116644F2670AF96006B71C1 /* ProgressView.h */,
+				A11664502670AF96006B71C1 /* ProgressView.m */,
+				A116647126710114006B71C1 /* NotificationTicketView.h */,
+				A116647226710114006B71C1 /* NotificationTicketView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,13 +314,19 @@
 			files = (
 				A1103175266E3EB500241513 /* LocationService.m in Sources */,
 				A1E5A215266FD41400FDC9C2 /* FavoriteTicket+CoreDataClass.m in Sources */,
+				A11664692670E1DA006B71C1 /* NotificationTicket+CoreDataClass.m in Sources */,
 				A1103160266E208B00241513 /* PlaceViewController.m in Sources */,
+				A116645B2670B8C2006B71C1 /* ContentViewController.m in Sources */,
 				A1103121266E16C400241513 /* AppDelegate.m in Sources */,
 				A1103196266E4EAA00241513 /* TicketsViewController.m in Sources */,
 				A1103132266E16C900241513 /* main.m in Sources */,
+				A116645F2670B9F7006B71C1 /* FirstViewController.m in Sources */,
 				A11031A4266E632F00241513 /* CoreDataHelper.m in Sources */,
 				A1103156266E1C9F00241513 /* Airport.m in Sources */,
+				A116646A2670E1DA006B71C1 /* NotificationTicket+CoreDataProperties.m in Sources */,
 				A1103171266E28B700241513 /* APIManager.m in Sources */,
+				A11664632670C08A006B71C1 /* NotificationCenter.m in Sources */,
+				A11664512670AF96006B71C1 /* ProgressView.m in Sources */,
 				A1E5A216266FD41400FDC9C2 /* FavoriteTicket+CoreDataProperties.m in Sources */,
 				A110317A266E40D200241513 /* MapPrice.m in Sources */,
 				A1103192266E4DD800241513 /* Ticket.m in Sources */,
@@ -288,6 +337,7 @@
 				A110313D266E17B300241513 /* MainViewController.m in Sources */,
 				A110315A266E1D2600241513 /* DataManager.m in Sources */,
 				A1103124266E16C400241513 /* SceneDelegate.m in Sources */,
+				A116647326710114006B71C1 /* NotificationTicketView.m in Sources */,
 				A110314D266E1B6D00241513 /* Country.m in Sources */,
 				A1E5A20F266FD35A00FDC9C2 /* FavoriteTicket.xcdatamodeld in Sources */,
 			);
