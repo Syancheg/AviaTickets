@@ -1,0 +1,73 @@
+/* 
+  Localizable.strings
+  AviaTickets
+
+  Created by Константин Кузнецов on 11.06.2021.
+  
+*/
+
+// common
+
+"From" = "Откуда";
+"To" = "Куда";
+
+// FirstViewController
+
+"ABOUT THE APP" = "О ПРИЛОЖЕНИИ";
+"AIR TICKETS" = "АВИАБИЛЕТЫ";
+"PRICE MAP" = "КАРТА ЦЕН";
+"FAVORITES" = "ИЗБРАННОЕ";
+
+"Flight ticket search app" = "Приложение для поиска авиабилетов";
+"Find the cheapest flights" = "Находите самые дешевые авиабилеты";
+"View the price map" = "Просматривайте карту цен";
+"Save your selected tickets to favorites" = "Сохраняйте выбранные билеты в избранное";
+
+// MainViewController
+
+"Search" = "Поиск";
+
+
+// MapViewController
+
+"Price Map" = "Карта цен";
+
+// TicketsViewController
+"Favorites" = "Избранное";
+"Tickets" = "Билеты";
+"From list" = "Из списка";
+"From map" = "С карты";
+"rub" = "руб";
+
+// PlaceViewController
+
+"Cities" = "Города";
+"Airports" = "Аэропорты";
+
+// NotificationTicketView
+
+"Flight number" = "Номер полета";
+
+// alert
+"Actions with the ticket" = "Действия с билетом";
+"Successfully" = "Успешно";
+"Ticket Reminder" = "Напоминание о билете";
+
+// messages
+"The notification will be sent" = "Уведомление будет отправлено";
+"No tickets were found for this direction" = "По данному направлению билетов не найдено";
+"You must specify the place of departure and the place of arrival" = "Необходимо указать место отправления и место прибытия";
+"What should I do with the selected ticket?" = "Что необходимо сделать с выбранным билетом?";
+
+// errors
+"Oops!" = "Увы!";
+"Error" = "Ошибка";
+
+// buttons
+"Remind me" = "Напомнить";
+"Delete from Favorites" = "Удалить из избранного";
+"Add to Favorites" = "Добавить в избранное";
+"Find" = "Найти";
+"Close" = "Закрыть";
+"NEXT" = "ДАЛЕЕ";
+"DONE" = "ГОТОВО";

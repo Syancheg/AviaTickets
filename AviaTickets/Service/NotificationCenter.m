@@ -76,7 +76,6 @@ Notification NotificationMake(NSString* _Nullable title, NSString* _Nonnull body
     notification.imageURL = imageURL;
     notification.ticket = ticket;
     [[CoreDataHelper sharedInstance] addNotificationTicket:ticket forDate:date];
-    NSLog(@"%@", date);
     return notification;
 }
 

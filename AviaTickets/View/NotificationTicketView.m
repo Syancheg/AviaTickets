@@ -79,7 +79,7 @@
     
 //  self.priceLabel.text = [NSString stringWithFormat:@"%ld руб.", (long)self.ticket.price];
     
-    self.priceLabel.text = [NSString stringWithFormat:@"%d руб.", 5455];
+    self.priceLabel.text = [NSString stringWithFormat:@"%d %@.", 5455, NSLocalizedString(@"rub", "")];
     self.priceLabel.font = [UIFont systemFontOfSize:24.0 weight:UIFontWeightBold];
     [shadowView addSubview:self.priceLabel];
 
@@ -97,7 +97,7 @@
 //  self.ticket.flightNumber почему то приходит шестнадцатиричное число и вылетает ошибка, не смог разобраться почему
 //    self.flightNumber.text =  [NSString stringWithFormat:@"%ld", (long)self.ticket.flightNumber.integerValue];
     
-    self.flightNumber.text =  [NSString stringWithFormat:@"Номер полета: %d", 765];
+    self.flightNumber.text =  [NSString stringWithFormat:@"%@: %d", NSLocalizedString(@"Flight number", ""), 765];
     self.flightNumber.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightLight];
     self.flightNumber.textColor = [UIColor darkGrayColor];
     [shadowView addSubview:self.flightNumber];

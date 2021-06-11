@@ -47,16 +47,16 @@
     self.tableView.tableHeaderView = self.searchController.searchBar;
     [self.view addSubview:self.tableView];
     
-    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Города", @"Аэропорты"]];
+    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Cities", ""), NSLocalizedString(@"Airports", "")]];
     [self.segmentedControl addTarget:self action:@selector(changeSource) forControlEvents:UIControlEventValueChanged];
     self.segmentedControl.tintColor = [UIColor blackColor];
     self.navigationItem.titleView = self.segmentedControl;
     self.segmentedControl.selectedSegmentIndex = 0;
     [self changeSource];
     if (self.placeType == PlaceTypeDeparture) {
-        self.title = @"Откуда";
+        self.title = NSLocalizedString(@"From", "");
     } else {
-        self.title = @"Куда";
+        self.title = NSLocalizedString(@"To", "");
     }
 }
 

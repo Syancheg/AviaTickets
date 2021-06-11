@@ -30,7 +30,7 @@
     if (self) {
         isFavorites = YES;
         self.tickets = [NSArray new];
-        self.title = @"Избранное";
+        self.title = NSLocalizedString(@"Favorites", "");
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.tableView registerClass:[TicketTableViewCell class] forCellReuseIdentifier:TicketCellReuseIdentifier];
         [self addSegmentControl];
@@ -43,7 +43,7 @@
     if (self)
     {
         self.tickets = tickets;
-        self.title = @"Билеты";
+        self.title = NSLocalizedString(@"Tickets", "");
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.tableView registerClass:[TicketTableViewCell class] forCellReuseIdentifier:TicketCellReuseIdentifier];
         
@@ -81,7 +81,7 @@
 
 - (void) addSegmentControl {
     CGRect segmentedFrame = CGRectMake(0, 0,self.tableView.bounds.size.width, 40);
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Из списка", @"С карты"]];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"From list", ""), NSLocalizedString(@"From map", "")]];
     segmentedControl.frame = segmentedFrame;
     segmentedControl.tintColor = [UIColor blackColor];
     segmentedControl.selectedSegmentIndex = 0;
@@ -97,7 +97,7 @@
 - (void)doneButtonDidTap:(UIBarButtonItem *)sender
 {
     if (_datePicker.date && notificationCell) {
-        NSString *message = [NSString stringWithFormat:@"%@ - %@ за %@ руб.", notificationCell.ticket.from, notificationCell.ticket.to, notificationCell.ticket.price];
+        NSString *message = [NSString stringWithFormat:@"%@ - %@ за %@ %@.", notificationCell.ticket.from, notificationCell.ticket.to, notificationCell.ticket.price, NSLocalizedString(@"rub", "")];
 
         NSURL *imageURL;
 //        if (notificationCell.airlineLogoView.image) {
@@ -111,12 +111,12 @@
 //            imageURL = [NSURL fileURLWithPath:path];
 //        }
         
-        Notification notification = NotificationMake(@"Напоминание о билете", message, _datePicker.date, imageURL, notificationCell.ticket);
+        Notification notification = NotificationMake(NSLocalizedString(@"Ticket Reminder", ""), message, self.datePicker.date, imageURL, notificationCell.ticket);
     
         [[NotificationCenter sharedInstance] sendNotification:notification];
 
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Успешно" message:[NSString stringWithFormat:@"Уведомление будет отправлено - %@", _datePicker.date] preferredStyle:(UIAlertControllerStyleAlert)];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Закрыть" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Successfully", "") message:[NSString stringWithFormat:@"%@ - %@", NSLocalizedString(@"The notification will be sent", ""), self.datePicker.date] preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Close", "") style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:cancelAction];
         [self presentViewController:alertController animated:YES completion:^{
             [self.view endEditing:YES];
@@ -161,26 +161,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (isFavorites) return;
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Действия с билетом" message:@"Что необходимо сделать с выбранным билетом?" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Actions with the ticket", "") message:NSLocalizedString(@"What should I do with the selected ticket?", "") preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *favoriteAction;
     if ([[CoreDataHelper sharedInstance] isFavorite: [_tickets objectAtIndex:indexPath.row]]) {
-        favoriteAction = [UIAlertAction actionWithTitle:@"Удалить из избранного" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        favoriteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Delete from Favorites", "") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [[CoreDataHelper sharedInstance] removeFromFavorite:[self->_tickets objectAtIndex:indexPath.row]];
         }];
     } else {
-        favoriteAction = [UIAlertAction actionWithTitle:@"Добавить в избранное" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        favoriteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Add to Favorites", "") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             Ticket *ticket = [self->_tickets objectAtIndex:indexPath.row];
             ticket.type = [NSNumber numberWithInt:0];
             [[CoreDataHelper sharedInstance] addToFavorite:ticket];
         }];
     }
     
-    UIAlertAction *notificationAction = [UIAlertAction actionWithTitle:@"Напомнить" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *notificationAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Remind me", "") style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
         self->notificationCell = [tableView cellForRowAtIndexPath:indexPath];
         [self->_dateTextField becomeFirstResponder];
     }];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Закрыть" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Close", "") style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:favoriteAction];
     [alertController addAction:notificationAction];
     [alertController addAction:cancelAction];
