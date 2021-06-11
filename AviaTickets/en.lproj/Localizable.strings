@@ -1,0 +1,73 @@
+/* 
+  Localizable.strings
+  AviaTickets
+
+  Created by Константин Кузнецов on 11.06.2021.
+  
+*/
+
+// common
+
+"From" = "From";
+"To" = "To";
+
+// FirstViewController
+
+"ABOUT THE APP" = "ABOUT THE APP";
+"AIR TICKETS" = "AIR TICKETS";
+"PRICE MAP" = "PRICE MAP";
+"FAVORITES" = "FAVORITES";
+
+"Flight ticket search app" = "Flight ticket search app";
+"Find the cheapest flights" = "Find the cheapest flights";
+"View the price map" = "View the price map";
+"Save your selected tickets to favorites" = "Save your selected tickets to favorites";
+
+// MainViewController
+
+"Search" = "Search";
+
+
+// MapViewController
+
+"Price Map" = "Price Map";
+
+// TicketsViewController
+"Favorites" = "Favorites";
+"Tickets" = "Tickets";
+"From list" = "From List";
+"From map" = "From map";
+"rub" = "rub";
+
+// PlaceViewController
+
+"Cities" = "Cities";
+"Airports" = "Airports";
+
+// NotificationTicketView
+
+"Flight number" = "Flight number";
+
+// alert
+"Actions with the ticket" = "Actions with the ticket";
+"Successfully" = "Successfully";
+"Ticket Reminder" = "Ticket Reminder";
+
+// messages
+"The notification will be sent" = "The notification will be sent";
+"No tickets were found for this direction" = "No tickets were found for this direction";
+"You must specify the place of departure and the place of arrival" = "You must specify the place of departure and the place of arrival";
+"What should I do with the selected ticket?" = "What should I do with the selected ticket?";
+
+// errors
+"Oops!" = "Oops!";
+"Error" = "Error";
+
+// buttons
+"Remind me" = "Remind me";
+"Delete from Favorites" = "Delete from Favorites";
+"Add to Favorites" = "Add to Favorites";
+"Find" = "Find";
+"Close" = "Close";
+"NEXT" = "NEXT";
+"DONE" = "DONE";

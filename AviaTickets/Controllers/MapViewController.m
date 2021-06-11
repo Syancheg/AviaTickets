@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Карта цен";
+    self.title = NSLocalizedString(@"Price Map", "");
     
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
     [self.mapView setDelegate:self];
@@ -75,7 +75,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
             annotation.title = [NSString stringWithFormat:@"%@ (%@)", price.destination.name, price.destination.code];
-            annotation.subtitle = [NSString stringWithFormat:@"%ld руб.", (long)price.value];
+            annotation.subtitle = [NSString stringWithFormat:@"%ld %@.", (long)price.value, NSLocalizedString(@"rub", "")];
             annotation.coordinate = price.destination.coordinate;
             [self->_mapView addAnnotation: annotation];
         });
@@ -112,20 +112,20 @@
             ticket.price = [NSNumber numberWithLong:price.value];
             ticket.type = [NSNumber numberWithInt:1];
             
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Действия с билетом" message:@"Что необходимо сделать с выбранным билетом?" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Actions with the ticket", "") message:NSLocalizedString(@"What should I do with the selected ticket?", "") preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *favoriteAction;
             
             if ([[CoreDataHelper sharedInstance] isFavorite: ticket]) {
-                favoriteAction = [UIAlertAction actionWithTitle:@"Удалить из избранного" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                favoriteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Delete from Favorites", "") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                     [[CoreDataHelper sharedInstance] removeFromFavorite:ticket];
                 }];
             } else {
-                favoriteAction = [UIAlertAction actionWithTitle:@"Добавить в избранное" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                favoriteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Add to Favorites", "") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [[CoreDataHelper sharedInstance] addToFavorite:ticket];
                 }];
             }
             
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Закрыть" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Close", "") style:UIAlertActionStyleCancel handler:nil];
             [alertController addAction:favoriteAction];
             [alertController addAction:cancelAction];
             [self presentViewController:alertController animated:YES completion:nil];
@@ -133,10 +133,6 @@
         }
     }
     
-    
-//    NSLog(@"%@", sender.accessibilityValue);
-//    NSLog(@"%@", self.origin.name);
-//    NSLog(@"%@", self.origin.code);
 }
 
 
